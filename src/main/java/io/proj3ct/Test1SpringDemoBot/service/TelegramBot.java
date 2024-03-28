@@ -7,7 +7,6 @@ import io.proj3ct.Test1SpringDemoBot.model.AdsRepository;
 import io.proj3ct.Test1SpringDemoBot.model.UserRepository;
 import io.proj3ct.Test1SpringDemoBot.model.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -31,11 +30,10 @@ import java.util.List;
 @Slf4j
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private AdsRepository adsRepository;
-    final BotConfig config;
+
+    private final UserRepository userRepository;
+    private final AdsRepository adsRepository;
+    private final BotConfig config;
     static final String HELP_TEXT = "This bot is created to demonstrate Spring capabilities. \n\n" +
             "You can execute commands from the main menu in the left or by typing a command:\n\n" +
             "Type /start to see a welcome message \n\n" +
@@ -46,7 +44,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     static final String NO_BUTTON = "NO_BUTTON";
 //    static final String ERROR_TEXT = "Error occurred: ";
 
-    public TelegramBot(BotConfig config) {
+    public TelegramBot(UserRepository userRepository, AdsRepository adsRepository, BotConfig config) {
+        this.userRepository = userRepository;
+        this.adsRepository = adsRepository;
         this.config = config;
         List<BotCommand> listOfCommands = new ArrayList<>();
         listOfCommands.add(new BotCommand("/start", "get a welcome message"));
@@ -85,6 +85,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     prepareAndSendMessage(user.getChatId(), textToSend);
                 }
             } else {
+                //исправить
                 switch (messageText) {
                     case "/start":
                         registerUser(update.getMessage());
