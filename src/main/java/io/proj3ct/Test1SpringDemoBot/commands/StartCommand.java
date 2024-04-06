@@ -3,7 +3,7 @@ package io.proj3ct.Test1SpringDemoBot.commands;
 import com.vdurmont.emoji.EmojiParser;
 import io.proj3ct.Test1SpringDemoBot.model.User;
 import io.proj3ct.Test1SpringDemoBot.model.UserRepository;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(name = "/start")
+@Service("/start")
 public class StartCommand extends Command {
     private final UserRepository userRepository;
 

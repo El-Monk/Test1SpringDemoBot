@@ -1,7 +1,7 @@
 package io.proj3ct.Test1SpringDemoBot.commands;
 
 import io.proj3ct.Test1SpringDemoBot.model.UserRepository;
-import org.jvnet.hk2.annotations.Service;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(name = "/register")
+@Service("/register")
 public class RegisterCommand extends Command{
     private final UserRepository userRepository;
 
