@@ -1,7 +1,9 @@
 package io.proj3ct.Test1SpringDemoBot.config;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -9,15 +11,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableScheduling
 @Data
-@PropertySource("application.properties")
+@ConfigurationProperties(prefix = "app.monk.adapter.telegram")
 public class BotConfig {
 
-    @Value("${bot.name}")
+    @NotBlank
     String botName;
 
-    @Value("${bot.token}")
+    @NotBlank
     String token;
 
-    @Value("${bot.owner}")
+    @NotBlank
     Long ownerId;
 }

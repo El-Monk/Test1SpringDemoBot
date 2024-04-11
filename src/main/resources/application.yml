@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: Test1SpringDemoBot
+  datasource:
+    url: jdbc:mysql://localhost:3306/tg-bot
+    username: root
+    password: rkpk00007
+
+server:
+  port: 3306
+
+app:
+  monk:
+    adapter:
+      telegram:
+        botName: SpringDemoBot
+        token: 7069077865:AAG9QxqjVSupr-oGe_Ov2GqiF9c7THCFTL4
+        ownerId: 647590320
+
+
+
